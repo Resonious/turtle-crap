@@ -32,26 +32,6 @@ function saveState()
     file.writeLine(tostring(depth))
     file.close()
 end
-
--- Returns true if successful
--- (no state present == successful)
-function loadState()
-    local file, err = fs.open("state", "r")
-    if err then
-        say(err)
-        return true
-    end
-
-    local goToDepth = tonumber(file.readLine())
-
-    say("Loaded state. Going to depth " .. goToDepth)
-    
-    while depth ~= goToDepth do
-        if not tryDown() then return false end
-    end
-
-    return true
-end
  
 local function unload( _bKeepOneFuelStack )
     say( "Unloading items..." )
@@ -317,6 +297,26 @@ end
 
 local alternate = 0
 local done = false
+
+-- Returns true if successful
+-- (no state present == successful)
+function loadState()
+    local file, err = fs.open("state", "r")
+    if err then
+        say(err)
+        return true
+    end
+
+    local goToDepth = tonumber(file.readLine())
+
+    say("Loaded state. Going to depth " .. goToDepth)
+    
+    while depth ~= goToDepth do
+        if not tryDown() then return false end
+    end
+
+    return true
+end
 
 if not loadState() then done = true end
 

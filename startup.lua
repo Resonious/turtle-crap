@@ -10,4 +10,5 @@ if err then
   say("Hello")
 else
   say("Hi. I'm at " .. file.readLine())
+  file.close()
 end
