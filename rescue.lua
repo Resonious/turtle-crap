@@ -70,6 +70,8 @@ local function stuck(where)
 end
 
 local function forward()
+  turtle.refuel(2)
+  
   if not turtle.up() then
     turtle.digUp()
     if not turtle.up() then
@@ -149,6 +151,9 @@ end
 -- Time to go
 
 while true do
+  turtle.select(1)
+  turtle.refuel(1)
+  
   if isStuck then
     io.stdin:read()
     isStuck = false
