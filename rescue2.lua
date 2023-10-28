@@ -208,8 +208,6 @@ while true do
       turtle.turnLeft()
       facing = '-X'
     end
-
-  elseif facing == 'X' and moveX > 
   end
 
   forward()
