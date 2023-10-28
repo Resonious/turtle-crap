@@ -64,36 +64,23 @@ local function curState()
   return "move " .. moveX .. ", " .. moveY .. ", " .. moveZ
 end
 
-local function stuck()
+local function stuck(where)
   isStuck = true
-  say("I'm stuck!!")
+  say("I'm stuck!! " .. where)
 end
 
 local function forward()
-  
-  if turtle.detect() then
-    if not turtle.dig() then
-      return stuck()
-    end
-  end
-  
   if not turtle.up() then
-    if turtle.digUp() then
-      if not turtle.up() then
-        return stuck()
-      end
-    else
-      return stuck()
+    turtle.digUp()
+    if not turtle.up() then
+      return stuck("Going up after dig")
     end
   end
   
   if not turtle.forward() then
-    if turtle.dig() then
-      if not turtle.forward() then
-        return stuck()
-      end
-    else
-      return stuck()
+    turtle.dig()
+    if not turtle.forward() then
+      return stuck("Going forward")
     end
   end
   if facing == 'X' then
@@ -108,24 +95,18 @@ local function forward()
   print("forward "..curState())
 
   if not turtle.down() then
-    if turtle.digDown() then
-      if not turtle.down() then
-        return stuck()
-      end
-    else
-      return stuck()
+    turtle.digDown()
+    if not turtle.down() then
+      return stuck("Going down after dig")
     end
   end
 end
 
 local function down()
   if not turtle.down() then
-    if turtle.digDown() then
-      if not turtle.down() then
-        return stuck()
-      end
-    else
-      return stuck()
+    turtle.digDown()
+    if not turtle.down() then
+      return stuck("Going down after dig")
     end
   end
   moveY = moveY + 1
@@ -135,12 +116,9 @@ end
 
 local function up()
   if not turtle.up() then
-    if turtle.digUp() then
-      if not turtle.up() then
-        return stuck()
-      end
-    else
-      return stuck()
+    turtle.digUp()
+    if not turtle.up() then
+      return stuck("Going up after dig")
     end
   end
   moveY = moveY - 1
