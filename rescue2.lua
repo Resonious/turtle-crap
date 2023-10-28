@@ -1,4 +1,4 @@
-print("Hey. Fuel: "..turtle.getFuelLevel())
+print("Yo. Fuel: "..turtle.getFuelLevel())
 
 local facing = '.'
 while facing ~= 'X' and facing ~= 'Z' and facing ~= '-X' and facing ~= '-Z' do
@@ -23,6 +23,12 @@ local toZ = tonumber(io.stdin:read())
 local moveX = toX - fromX
 local moveY = toY - fromY
 local moveZ = toZ - fromZ
+
+local retX = fromX - toX
+local retY = fromY - toY
+local retZ = fromZ - toZ
+
+local returning = false
 
 local function say(msg)
     print(msg)
@@ -116,6 +122,28 @@ local function madeIt()
   end
   
   say("Made it")
+
+  if not returning then
+    returning = true
+    say("Coming back")
+
+    moveX = retX
+    moveY = retY
+    moveZ = retZ
+    
+    turtle.turnLeft()
+    turtle.turnLeft()
+
+    if facing == 'X' then
+      facing = '-X'
+    elseif facing == '-X' then
+      facing = 'X'
+    elseif facing == 'Z' then
+      facing = '-Z'
+    elseif facing == '-Z' then
+      facing = 'Z'
+    end
+  end
 end
 
 -- Time to go
@@ -135,7 +163,7 @@ while true do
       facing = '-Z'
     elseif moveZ == 0 then
       madeIt()
-      break
+      if returning then break end
     else
       turtle.turnRight()
       facing = 'Z'
@@ -147,7 +175,7 @@ while true do
       facing = '-Z'
     elseif moveZ == 0 then
       madeIt()
-      break
+      if returning then break end
     else
       turtle.turnLeft()
       facing = 'Z'
@@ -159,7 +187,7 @@ while true do
       facing = '-X'
     elseif moveX == 0 then
       madeIt()
-      break
+      if returning then break end
     else
       turtle.turnRight()
       facing = 'X'
@@ -171,7 +199,7 @@ while true do
       facing = '-X'
     elseif moveX == 0 then
       madeIt()
-      break
+      if returning then break end
     else
       turtle.turnLeft()
       facing = 'X'
