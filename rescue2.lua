@@ -1,4 +1,4 @@
-print("Fuel: "..turtle.getFuelLevel())
+print("Hey. Fuel: "..turtle.getFuelLevel())
 
 local facing = '.'
 while facing ~= 'X' and facing ~= 'Z' and facing ~= '-X' and facing ~= '-Z' do
@@ -132,49 +132,49 @@ while true do
   if facing == 'X' and moveX == 0 then
     if moveZ < 0 then
       turtle.turnLeft()
-      facing = 'Z'
+      facing = '-Z'
     elseif moveZ == 0 then
       madeIt()
       break
     else
       turtle.turnRight()
-      facing = '-Z'
+      facing = 'Z'
     end
 
   elseif facing == '-X' and moveX == 0 then
     if moveZ < 0 then
       turtle.turnRight()
-      facing = 'Z'
+      facing = '-Z'
     elseif moveZ == 0 then
       madeIt()
       break
     else
       turtle.turnLeft()
-      facing = '-Z'
+      facing = 'Z'
     end
 
   elseif facing == 'Z' and moveZ == 0 then
     if moveX < 0 then
       turtle.turnLeft()
-      facing = 'X'
+      facing = '-X'
     elseif moveX == 0 then
       madeIt()
       break
     else
       turtle.turnRight()
-      facing = '-X'
+      facing = 'X'
     end
   
   elseif facing == '-Z' and moveZ == 0 then
     if moveX < 0 then
       turtle.turnRight()
-      facing = 'X'
+      facing = '-X'
     elseif moveX == 0 then
       madeIt()
       break
     else
       turtle.turnLeft()
-      facing = '-X'
+      facing = 'X'
     end
   end
 
