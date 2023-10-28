@@ -1,3 +1,5 @@
+print("Fuel: "..turtle.getFuelLevel())
+
 local facing = '.'
 while facing ~= 'X' and facing ~= 'Z' and facing ~= '-X' and facing ~= '-Z' do
   print("Which way is forward? X? Z? -X? -Z?")
@@ -150,8 +152,6 @@ end
 
 -- Time to go
 
-print("Fuel: "..turtle.getFuelLevel())
-
 while true do
   turtle.select(1)
   turtle.refuel(1)
@@ -163,25 +163,25 @@ while true do
   
   if facing == 'X' and moveX == 0 then
     if moveZ < 0 then
-      turtle.turnRight()
+      turtle.turnLeft()
       facing = 'Z'
     elseif moveZ == 0 then
       madeIt()
       break
     else
-      turtle.turnLeft()
+      turtle.turnRight()
       facing = '-Z'
     end
 
   elseif facing == '-X' and moveX == 0 then
     if moveZ < 0 then
-      turtle.turnLeft()
+      turtle.turnRight()
       facing = 'Z'
     elseif moveZ == 0 then
       madeIt()
       break
     else
-      turtle.turnRight()
+      turtle.turnLeft()
       facing = '-Z'
     end
 
@@ -208,6 +208,8 @@ while true do
       turtle.turnLeft()
       facing = '-X'
     end
+
+  elseif facing == 'X' and moveX > 
   end
 
   forward()
