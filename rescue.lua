@@ -61,12 +61,12 @@ end
 local isStuck = false
 
 local function curState()
-  return "move " .. moveX .. ", " .. moveY .. ", " .. moveZ
+  return "" .. moveX .. ", " .. moveY .. ", " .. moveZ
 end
 
 local function stuck(where)
   isStuck = true
-  say("I'm stuck!! " .. where)
+  say("I'm stuck!! " .. where .. " " .. curState())
 end
 
 local function forward()
@@ -75,7 +75,7 @@ local function forward()
   if not turtle.up() then
     turtle.digUp()
     if not turtle.up() then
-      return stuck("Going up after dig")
+      return stuck("(forward) Going up")
     end
   end
   
@@ -99,7 +99,7 @@ local function forward()
   if not turtle.down() then
     turtle.digDown()
     if not turtle.down() then
-      return stuck("Going down after dig")
+      return stuck("(forward) Going down")
     end
   end
 end
@@ -149,6 +149,8 @@ local function madeIt()
 end
 
 -- Time to go
+
+print("Fuel: "..turtle.getFuelLevel())
 
 while true do
   turtle.select(1)
