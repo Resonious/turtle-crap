@@ -3,7 +3,7 @@ print("Fuel: "..turtle.getFuelLevel())
 local facing = '.'
 while facing ~= 'X' and facing ~= 'Z' and facing ~= '-X' and facing ~= '-Z' do
   print("Which way is forward? X? Z? -X? -Z?")
-  facing = io.stdin:read()
+  facing = string.upper(io.stdin:read())
 end
 
 print("Input your X")
