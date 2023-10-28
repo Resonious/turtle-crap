@@ -61,7 +61,7 @@ end
 local isStuck = false
 
 local function state()
-  "" .. moveX .. ", " .. moveY .. ", " .. moveZ
+  return "" .. moveX .. ", " .. moveY .. ", " .. moveZ
 end
 
 local function stuck()
