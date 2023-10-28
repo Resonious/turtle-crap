@@ -24,36 +24,6 @@ local moveX = toX - fromX
 local moveY = toY - fromY
 local moveZ = toZ - fromZ
 
-local function refuel(amount)
-    local fuelLevel = turtle.getFuelLevel()
-    if fuelLevel == "unlimited" then
-        return true
-    end
-    
-    local needed = amount or (moveX * 2 + moveY + moveZ + 2)
-    if turtle.getFuelLevel() < needed then
-        local fueled = false
-        for n=1,16 do
-            if turtle.getItemCount(n) > 0 then
-                turtle.select(n)
-                if turtle.refuel(1) then
-                    while turtle.getItemCount(n) > 0 and turtle.getFuelLevel() < needed do
-                        turtle.refuel(1)
-                    end
-                    if turtle.getFuelLevel() >= needed then
-                        turtle.select(1)
-                        return true
-                    end
-                end
-            end
-        end
-        turtle.select(1)
-        return false
-    end
-    
-    return true
-end
-
 local function say(msg)
     print(msg)
     peripheral.call("left", "sendMessage", msg)
@@ -72,8 +42,6 @@ local function stuck(where)
 end
 
 local function forward()
-  turtle.refuel(2)
-  
   if not turtle.up() then
     turtle.digUp()
     if not turtle.up() then
