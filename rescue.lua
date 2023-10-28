@@ -60,8 +60,8 @@ end
 
 local isStuck = false
 
-local function state()
-  return "" .. moveX .. ", " .. moveY .. ", " .. moveZ
+local function curState()
+  return "move " .. moveX .. ", " .. moveY .. ", " .. moveZ
 end
 
 local function stuck()
@@ -105,7 +105,7 @@ local function forward()
   else
     moveZ = moveZ + 1
   end
-  print("forward "..state())
+  print("forward "..curState())
 
   if not turtle.down() then
     if turtle.digDown() then
@@ -130,7 +130,7 @@ local function down()
   end
   moveY = moveY + 1
   
-  print("down "..state())
+  print("down "..curState())
 end
 
 local function up()
@@ -145,7 +145,7 @@ local function up()
   end
   moveY = moveY - 1
 
-  print("up "..state())
+  print("up "..curState())
 end
 
 local function madeIt()
